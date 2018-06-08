@@ -1,8 +1,9 @@
 <?php
-header("content-type:text/html;charset=utf8");
-//连库、选库、设置字符集
-mysql_connect("127.0.0.1","root","root");
-mysql_select_db("05");
+//header("content-type:text/html;charset=utf8");
+////连库、选库、设置字符集
+//mysql_connect("127.0.0.1","root","root");
+//mysql_select_db("05");
+$db = new PDO('mysql:host=localhost;dbname=05','root','root');
 //mysql_query('set names utf8');
 $text = isset($_POST['text'])?$_POST['text']:"";
 $name = $_COOKIE['name'];
@@ -11,7 +12,7 @@ $time = time();
 $sql = "insert into message(text,name,time) values('$text','$name','$time')";
 //var_dump($sql);exit;
 //print_r($sql);exit;
-$res = mysql_query($sql);
+$res = $db->query($sql);
 //var_dump($res);exit;
 if($res)
 {
